@@ -2,26 +2,26 @@
 // - Exercici 1
 // Imprimir per pantalla el resultat d'una arrow function autoinvocable que sumi dos nombres.
 
-// (()=> {
-//     const a = 10
-//     const b = 25
-//     console.log(a + b)
-// })()
+(()=> {
+    const a = 10
+    const b = 25
+    console.log(a + b)
+})()
 
 //----------------------------------------NIVELL 2----------------------------------------
 // - Exercici 1
 // Crear una arrow function que, rebent un paràmetre, retorni un objecte amb un atribut que 
 // tingui com a valor el paràmetre rebut.
 
-// const arrowProof = (proof) => {
-//     const obj = {
-//         proof
-//     }
+const arrowProof = (proof) => {
+    const obj = {
+        proof
+    }
 
-//     return obj
-// }
+    return obj
+}
 
-// console.log(arrowProof("Hola"))
+console.log(arrowProof("Hola"))
 
 
 // - Exercici 2
