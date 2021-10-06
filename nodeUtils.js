@@ -311,7 +311,7 @@ const decryptFile = () => {
 
 }
 
-decryptFile()
+// decryptFile()
 
 const deleteAndVerifyRepeatedFiles = () => {
 
@@ -338,23 +338,30 @@ const deleteAndVerifyRepeatedFiles = () => {
     })
   })
 
-  fs.unlink('proofBase64Crypt.txt', (e) => {
-    if (e) {
-      throw new Error(e)
-    }
-  })
+  setTimeout(() => {
+    fs.unlink('proofBase64Crypt.txt', (e) => {
+      if (e) {
+        throw new Error(e)
+      }
+    })
 
-  fs.unlink('proofHexCrypt.txt', (e) => {
-    if (e) {
-      throw new Error(e)
-    }
-  })
+    fs.unlink('proofHexCrypt.txt', (e) => {
+      if (e) {
+        throw new Error(e)
+      }
+    })
+  }, 3000)
+  
 
-  fs.rename('proofDecryptedHex.txt', 'proofDecryptedFromHexAndBase64', (e) => {
-    if (e) {
-      throw new Error(e)
-    }
-  })
+  setTimeout(() => {
+    fs.rename('proofDecryptedBase64.txt', 'proofDecryptedFromHexAndBase64', (e) => {
+      if (e) {
+        throw new Error(e)
+      }
+    })
+  }, 6000)
+
+  
 }
 
 deleteAndVerifyRepeatedFiles()
