@@ -1,4 +1,4 @@
-// //----------------------------------------NIVELL 1----------------------------------------
+//----------------------------------------NIVELL 1----------------------------------------
 // - Exercici 1
 // Crear una function que retorni una Promise que invoqui la funcion resolve() o bé reject() que rep.
 // Invocar-la des de fora pasandole totes dues funcions que imprimeixin un missatge diferent en cada cas.

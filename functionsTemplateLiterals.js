@@ -4,9 +4,7 @@
 // el nom com a paràmetre.
 
 
-const returnName = (nom) => nom
-
-console.log(returnName("oscar"))    
+   
 
 const returnSecondName = nom => {
     console.log("My name is " + nom)
@@ -29,10 +27,10 @@ console.log(`Jo em dic ${nom} ${cognom}`)
 // Invocar la funció mitjançant template literals
 
 const printName = (nom, cognom) => {
-    console.log(`Jo em dic ${nom} ${cognom}`)
+    return `Jo em dic ${nom} ${cognom}`
 }
 
-printName(nom, cognom)
+console.log(`${printName(`${nom}`, `${cognom}`)}`)
 
 
 //----------------------------------------NIVELL 3----------------------------------------
@@ -52,14 +50,23 @@ const fulfill = () => {
 const matriu = []
 
 for (let i = 0; i < 10; i++) {
-    matriu[i] = fulfill()
+    matriu[i] = fulfill
+}
+
+console.log(matriu)
+
+for (let i = 0; i < 10; i++) {
+    matriu[i]()
 }
 
 
-// - Exercici 2
-// Crear una funció anònima autoinvocable (igualada a una variable) que imprimeixi per pantalla
-//  el nom d'usuari rebut com a paràmetre
+// // - Exercici 2
+// // Crear una funció anònima autoinvocable (igualada a una variable) que imprimeixi per pantalla
+// //  el nom d'usuari rebut com a paràmetre
 
-(function(nom) {
+const autoinvocable = (function(nom) {
     console.log(nom)
 })("Oscar")
+
+
+
