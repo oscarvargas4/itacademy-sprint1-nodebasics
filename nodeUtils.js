@@ -1,11 +1,12 @@
 const fs = require('fs')
 const path = require('path')
-const { createGzip } = require('zlib');
-const { pipeline } = require('stream');
+const { createGzip } = require('zlib')
+const { pipeline } = require('stream')
 const {
   createReadStream,
   createWriteStream
-} = require('fs');
+} = require('fs')
+const { exec } = require('child_process')
 const { Buffer } = require('buffer')
 const crypto = require('crypto')
 
@@ -80,7 +81,7 @@ const readFunction = () => {
 
 // Crea una funció que llisti per la consola el contingut del directori d'usuari de l'ordinador utilizant Node Child Processes.
 
-// const { exec } = require('child_process')
+
 
 const zipFunction = () => {
   exec('dir', (error, stdout, stderr) => {
@@ -104,9 +105,6 @@ const zipFunction = () => {
 // - Exercici 1
 // Crea una funció que creï dos fitxers codificats en hexadecimal i en base64 respectivament, 
 // a partir del fitxer del nivell 1.
-
-
-
 
 const codedToHex = (info) => {
     const buf = Buffer.from(info, 'utf8')
@@ -231,12 +229,6 @@ const encryptionAES = () => {
 
 // encryptionAES()
 
-
-
-
-
-
-
 // Crea una altra funció que desencripti i descodifiqui els fitxers de l'apartat anterior 
 // tornant a generar una còpia de l'inicial.
 
@@ -252,116 +244,140 @@ const codedBase64ToString = (info) => {
 
 
 const decryptFile = () => {
-  fs.readFile('./proofBase64Crypt.txt',  'utf8', (e, data) => {
-    if (e) {
-      throw new Error(e)
-    }
-    const algorithm = 'aes-192-cbc';
-    const password = 'Password used to generate key';
-    
-    const key = crypto.scryptSync(password, 'salt', 24)    
-    const iv = Buffer.alloc(16, 0);
-
-    const decipher = crypto.createDecipheriv(algorithm, key, iv)
-
-    const encrypted = data
-    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
-    decrypted += decipher.final('utf8')
-    
-    const incialInfo64 = codedBase64ToString(decrypted)
-
-    fs.writeFile('proofDecryptedBase64.txt', incialInfo64, (e) => {
+  return new Promise((resolve, reject) => {
+    fs.readFile('./proofBase64Crypt.txt',  'utf8', (e, data) => {
       if (e) {
-        throw new Error(e)
+        reject(e)
       }
-
-      console.log('proofDecryptedBase64.txt created')
+      const algorithm = 'aes-192-cbc';
+      const password = 'Password used to generate key';
+      
+      const key = crypto.scryptSync(password, 'salt', 24)    
+      const iv = Buffer.alloc(16, 0);
+  
+      const decipher = crypto.createDecipheriv(algorithm, key, iv)
+  
+      const encrypted = data
+      let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+      decrypted += decipher.final('utf8')
+      
+      const incialInfo64 = codedBase64ToString(decrypted)
+  
+      fs.writeFile('proofDecryptedBase64.txt', incialInfo64, (e) => {
+        if (e) {
+          reject(e)
+        }
+  
+        console.log('proofDecryptedBase64.txt created')
+      })
+  
     })
-
-  })
-
-
-  fs.readFile('./proofHexCrypt.txt',  'utf8', (e, data) => {
-    if (e) {
-      throw new Error(e)
-    }
-    const algorithm = 'aes-192-cbc';
-    const password = 'Password used to generate key';
-    
-    const key = crypto.scryptSync(password, 'salt', 24)    
-    const iv = Buffer.alloc(16, 0);
-
-    const decipher = crypto.createDecipheriv(algorithm, key, iv)
-
-    const encrypted = data
-    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
-    decrypted += decipher.final('utf8')
-    
-    const incialInfo64 = codedHexToString(decrypted)
-
-    fs.writeFile('proofDecryptedHex.txt', incialInfo64, (e) => {
+  
+  
+    fs.readFile('./proofHexCrypt.txt',  'utf8', (e, data) => {
       if (e) {
-        throw new Error(e)
+        reject(e)
       }
-
-      console.log('proofDecryptedHex.txt created')
+      const algorithm = 'aes-192-cbc';
+      const password = 'Password used to generate key';
+      
+      const key = crypto.scryptSync(password, 'salt', 24)    
+      const iv = Buffer.alloc(16, 0);
+  
+      const decipher = crypto.createDecipheriv(algorithm, key, iv)
+  
+      const encrypted = data
+      let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+      decrypted += decipher.final('utf8')
+      
+      const incialInfo64 = codedHexToString(decrypted)
+  
+      fs.writeFile('proofDecryptedHex.txt', incialInfo64, (e) => {
+        if (e) {
+          reject(e)
+        }
+  
+        console.log('proofDecryptedHex.txt created')
+      })
+      
     })
-
+    resolve("Function completed")
   })
-
+  
 }
 
-// decryptFile()
+
 
 const deleteAndVerifyRepeatedFiles = () => {
-
-  fs.readFile('./proofDecryptedBase64.txt', 'utf8', (e, dataBase64) => {
-    if (e) {
-      throw new Error(e)
-    }
-
-    fs.readFile('./proofDecryptedHex.txt', 'utf8', (e, dataHex) => {
+  return new Promise((resolve, reject) => {
+    
+    fs.readFile('./proofDecryptedBase64.txt', 'utf8', (e, dataBase64) => {
       if (e) {
-        throw new Error(e)        
+        reject(e)
       }
 
-      if (dataBase64 == dataHex) {
-        fs.unlink('./proofDecryptedHex.txt', (e) => {
-          if (e) {
-            throw new Error(e)
-          }
+      fs.readFile('./proofDecryptedHex.txt', 'utf8', (e, dataHex) => {
+        if (e) {
+          reject(e)        
+        }
+
+        if (dataBase64 == dataHex) {          
           console.log('The data is the same!')
-        })
-      } else {
-        throw new Error('The data is not the same')
-      }
-    })
-  })
 
-  setTimeout(() => {
+        } else {
+          reject('The data is not the same')
+        }
+      })
+    })
+
+    
     fs.unlink('proofBase64Crypt.txt', (e) => {
       if (e) {
-        throw new Error(e)
+        reject(e)
       }
     })
 
     fs.unlink('proofHexCrypt.txt', (e) => {
       if (e) {
-        throw new Error(e)
+        reject(e)
       }
     })
-  }, 3000)
-  
+    
+    resolve("Function completed")
+  })
 
-  setTimeout(() => {
-    fs.rename('proofDecryptedBase64.txt', 'proofDecryptedFromHexAndBase64', (e) => {
-      if (e) {
-        throw new Error(e)
-      }
-    })
-  }, 6000)
-
-  
 }
 
-deleteAndVerifyRepeatedFiles()
+const unify = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      fs.unlink('proofDecryptedHex.txt', (e) => {
+        if (e) {
+          reject(e)
+        }            
+      })
+      
+      fs.rename('proofDecryptedBase64.txt', 'proofDecryptedFromHexAndBase64', (e) => {
+        if (e) {
+          reject(e)
+        }
+      })  
+      
+      resolve("Function completed")
+    }, 2000)
+    
+  })
+}
+
+decryptFile().then((result) => {
+  console.log(result)
+  return deleteAndVerifyRepeatedFiles()
+}).then((result) => {
+  console.log(result)
+  return unify()
+}).then((result) => {
+  console.log(result)
+}).catch((e) => {
+  console.log(e)
+})
+
