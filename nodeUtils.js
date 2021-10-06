@@ -67,16 +67,20 @@ const readFunction = () => {
 // - Exercici 1
 // Crea una funció que comprimeixi el fitxer del nivell 1.
 
-// const gzip = createGzip();
-// const source = createReadStream('proof.txt');
-// const destination = createWriteStream('proof.txt.gz');
+const zipDocument = () => {
+  const gzip = createGzip()
+  const source = createReadStream('proof.txt')
+  const destination = createWriteStream('proof.txt.gz')
+  
+  pipeline(source, gzip, destination, (e) => {
+    if (e) {
+      console.error('An error occurred:', e)
+      process.exitCode = 1
+    }
+  })
+}
+// zipDocument()
 
-// pipeline(source, gzip, destination, (err) => {
-//   if (err) {
-//     console.error('An error occurred:', err);
-//     process.exitCode = 1;
-//   }
-// });
 
 
 // Crea una funció que llisti per la consola el contingut del directori d'usuari de l'ordinador utilizant Node Child Processes.
@@ -369,15 +373,55 @@ const unify = () => {
   })
 }
 
-decryptFile().then((result) => {
-  console.log(result)
-  return deleteAndVerifyRepeatedFiles()
-}).then((result) => {
-  console.log(result)
-  return unify()
-}).then((result) => {
-  console.log(result)
-}).catch((e) => {
-  console.log(e)
-})
+// decryptFile().then((result) => {
+//   console.log(result)
+//   return deleteAndVerifyRepeatedFiles()
+// }).then((result) => {
+//   console.log(result)
+//   return unify()
+// }).then((result) => {
+//   console.log(result)
+// }).catch((e) => {
+//   console.log(e)
+// })
+
+
+
+
+
+//-------------------------------------Opcion sin resultado, preguntar al profe---------------------------------------
+
+// const unify = () => {
+//   return new Promise((resolve, reject) => {
+    
+//     fs.unlink('proofDecryptedHex.txt', (e) => {
+//       if (e) {
+//         reject(e)
+//       }            
+//     })
+    
+//     fs.rename('proofDecryptedBase64.txt', 'proofDecryptedFromHexAndBase64', (e) => {
+//       if (e) {
+//         reject(e)
+//       }
+//     })  
+    
+//     resolve("Function completed")
+    
+    
+//   })
+// }
+// const final = async () => {
+//   const decrypting = await decryptFile()
+//   const verifying = await deleteAndVerifyRepeatedFiles()
+//   const unifying = await unify()
+
+//   return "All ok"
+// }
+
+// final().then((result) => {
+//   console.log(result)
+// }).catch((e) => {
+//   console.log(e)
+// })
 
