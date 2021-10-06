@@ -7,6 +7,7 @@ const {
   createWriteStream
 } = require('fs');
 const { Buffer } = require('buffer')
+const crypto = require('crypto')
 
 //----------------------------------------NIVELL 1----------------------------------------
 // - Exercici 1
@@ -34,25 +35,32 @@ const { Buffer } = require('buffer')
 // - Exercici 2
 // Crea una funció que, en executar-la, escrigui una frase en un fitxer.
 
-// fs.writeFile('proof.txt', 'IT Academy course', (e) => {
-//     if (e) {
-//         throw new Error(e)
-//     }
+const writeFunction = () => {
+  fs.writeFile('proof.txt', 'IT Academy course', (e) => {
+    if (e) {
+        throw new Error(e)
+    }
 
-//     console.log('File is created successfully')
-// })
+    console.log('File is created successfully')
+  })
+}
 
+// writeFunction()
 
 // - Exercici 3
 // Crea una altra funció que mostri per consola el contingut del fitxer de l'exercici anterior.
 
-// fs.readFile('./proof.txt', 'utf8', (e, data) => {
-//     if (e) {
-//         throw new Error(e)
-//     }
+const readFunction = () => {
+  fs.readFile('./proof.txt', 'utf8', (e, data) => {
+    if (e) {
+        throw new Error(e)
+    }
     
-//     console.log(data)
-// })
+    console.log(data)
+  })
+}
+
+// readFunction()
 
 //----------------------------------------NIVELL 2----------------------------------------
 // - Exercici 1
@@ -74,20 +82,23 @@ const { Buffer } = require('buffer')
 
 // const { exec } = require('child_process')
 
-// exec('dir', (error, stdout, stderr) => {
-//     if (error) {
-//         console.log('Error: ', error)
-//         return
-//     }
-//     if (stderr) {
-//         console.log('Standar Error: ', stderr)
-//         return
-//     }
+const zipFunction = () => {
+  exec('dir', (error, stdout, stderr) => {
+    if (error) {
+        console.log('Error: ', error)
+        return
+    }
+    if (stderr) {
+        console.log('Standar Error: ', stderr)
+        return
+    }
 
-//     console.log(stdout)
+    console.log(stdout)
 
-// })
+  })
+}
 
+// zipFunction()
 
 //----------------------------------------NIVELL 3----------------------------------------
 // - Exercici 1
@@ -97,44 +108,44 @@ const { Buffer } = require('buffer')
 
 
 
-// const codedToHex = (info) => {
-//     const buf = Buffer.from(info, 'utf8')
-//     return buf.toString('hex')
-// }
-// const codedToBase64 = (info) => {
-//     const buf = Buffer.from(info, 'utf8')
-//     return buf.toString('base64')
-// }
+const codedToHex = (info) => {
+    const buf = Buffer.from(info, 'utf8')
+    return buf.toString('hex')
+}
+const codedToBase64 = (info) => {
+    const buf = Buffer.from(info, 'utf8')
+    return buf.toString('base64')
+}
 
-// const twoCodedFiles = () => {   
-//     fs.readFile('./proof.txt', 'utf8', (e, data) => {
-//         if (e) {
-//             throw new Error(e)
-//         }
+const twoCodedFiles = () => {   
+    fs.readFile('./proof.txt', 'utf8', (e, data) => {
+        if (e) {
+            throw new Error(e)
+        }
         
-//         const hexDecodedContent = codedToHex(data)
+        const hexDecodedContent = codedToHex(data)
 
-//         fs.writeFile('proofHex.txt', hexDecodedContent, (e) => {
-//             if (e) {
-//                 throw new Error(e)
-//             }
+        fs.writeFile('proofHex.txt', hexDecodedContent, (e) => {
+            if (e) {
+                throw new Error(e)
+            }
 
-//             console.log('File with hexadecimal code is created successfully')
-//         })
+            console.log('File with hexadecimal code is created successfully')
+        })
 
-//         const base64DecodedContent = codedToBase64(data)
+        const base64DecodedContent = codedToBase64(data)
 
-//         fs.writeFile('proofBase64.txt', base64DecodedContent, (e) => {
-//             if (e) {
-//                 throw new Error(e)
-//             }
+        fs.writeFile('proofBase64.txt', base64DecodedContent, (e) => {
+            if (e) {
+                throw new Error(e)
+            }
 
-//             console.log('File with base64 code is created successfully')
-//         })
+            console.log('File with base64 code is created successfully')
+        })
 
-//     })    
+    })    
     
-// }
+}
 
 // twoCodedFiles()
 
@@ -143,180 +154,207 @@ const { Buffer } = require('buffer')
 // l'algorisme aes-192-cbc, i esborri els fitxers inicials.
 // https://nodejs.org/api/crypto.html
 
-//Cipher
+const encryptionAES = () => {
+  fs.readFile('./proofHex.txt', 'utf8', (e, data) => {
+    if (e) {
+        throw new Error(e)
+    }
 
-// const { scrypt, randomFill, createCipheriv } = require('crypto')
+    const algorithm = 'aes-192-cbc'
+    const password = 'Password used to generate key'
 
-// const algorithm = 'aes-192-cbc'
-// const password = 'Exercicis del Nivell 3' 
+    const key = crypto.scryptSync(password, 'salt', 24)
+    const iv = Buffer.alloc(16, 0); 
 
-// scrypt(password, 'salt', 24, (e, key) => {
-//     if (e) {
-//         throw new Error(e)
-//     }
+    const cipher = crypto.createCipheriv(algorithm, key, iv);
 
-//     randomFill(new Uint8Array(16), (e, iv) => {
-//         if (e) {
-//             throw new Error(e)
-//         }
+    let encrypted = cipher.update(data, 'utf8', 'hex')
+    encrypted += cipher.final('hex')
 
-//         const cipher = createCipheriv(algorithm, key, iv)
+    fs.writeFile('proofHexCrypt.txt', encrypted, (e) => {
+      if (e) {
+        throw new Error(e)
+      }
 
-//         let encrypted = cipher.update('IT Academy course', 'utf8', 'hex')
-//         encrypted += cipher.final('hex')
-        
-//         console.log(encrypted)
-//     })
-// })
+      fs.unlink('./proofHex.txt', (e) => {
+        if (e) {
+          throw new Error(e)
+        }
+
+        console.log('proofHex.txt deleted')
+      })
+    })
+
+  })
+
+  fs.readFile('./proofBase64.txt', 'utf8', (e, data) => {
+    if (e) {
+        throw new Error(e)
+    }
+
+    const algorithm = 'aes-192-cbc'
+    const password = 'Password used to generate key'
+
+    const key = crypto.scryptSync(password, 'salt', 24)
+    const iv = Buffer.alloc(16, 0); 
+
+    const cipher = crypto.createCipheriv(algorithm, key, iv);
+
+    let encrypted = cipher.update(data, 'utf8', 'hex')
+    encrypted += cipher.final('hex')
+
+    fs.writeFile('proofBase64Crypt.txt', encrypted, (e) => {
+      if (e) {
+        throw new Error(e)
+      }
+
+      fs.unlink('./proofBase64.txt', (e) => {
+        if (e) {
+          throw new Error(e)
+        }
+
+        console.log('proofBase64.txt deleted')
+      })
+    })
+
+  })
+
+  fs.unlink('./proof.txt', (e) => {
+    if (e) {
+      throw new Error(e)
+    }
+
+    console.log('proof.txt deleted')
+  })
+
+}
+
+// encryptionAES()
 
 
-//Decipher
-// const { scryptSync, createDecipheriv } = require('crypto')
 
-// const key = scryptSync(password, 'salt', 24)
 
-// const iv = Buffer.alloc(16, 0)
 
-// const decipher = createDecipheriv(algorithm, key, iv)
-
-// const encrypted = '346560e8e3477d911cc0004729e5158ebb92bca60de59b1c53e8abc35b243669'
-
-// let decrypted = decipher.update(encrypted, 'hex', 'utf8')
-// decrypted += decipher.final('utf8')
-// console.log(decrypted)
 
 
 // Crea una altra funció que desencripti i descodifiqui els fitxers de l'apartat anterior 
 // tornant a generar una còpia de l'inicial.
 
+const codedHexToString = (info) => {
+  const buf = Buffer.from(info, 'hex')
+  return buf.toString('utf8')
+}
+
+const codedBase64ToString = (info) => {
+  const buf = Buffer.from(info, 'base64')
+  return buf.toString('utf8')
+}
 
 
-
-// const {
-//     scrypt,
-//     randomFill,
-//     createCipheriv
-//   } = require('crypto');
-  
-//   const algorithm = 'aes-192-cbc';
-//   const password = 'Password used to generate key';
-  
-//   // First, we'll generate the key. The key length is dependent on the algorithm.
-//   // In this case for aes192, it is 24 bytes (192 bits).
-//   scrypt(password, 'salt', 24, (err, key) => {
-//     if (err) throw err;
-//     // Then, we'll generate a random initialization vector
-//     randomFill(new Uint8Array(16), (err, iv) => {
-//       if (err) throw err;
-  
-//       const cipher = createCipheriv(algorithm, key, iv);
-  
-//       let encrypted = cipher.update('some clear text data', 'utf8', 'hex');
-//       encrypted += cipher.final('hex');
-//       console.log(encrypted);
-//     });
-//   });
-
-  //924f0e378ff0f1741be29f341db8b4b6930e9a4d140730c5837fa255c600981d
-
-
-// const {
-//   scryptSync,
-//   createDecipheriv
-// } = require('crypto');
-
-// const algorithm = 'aes-192-cbc';
-// const password = 'Password used to generate key';
-// // Use the async `crypto.scrypt()` instead.
-// const key = scryptSync(password, 'salt', 24);
-// // The IV is usually passed along with the ciphertext.
-// const iv = Buffer.alloc(16, 0); // Initialization vector.
-
-// const decipher = createDecipheriv(algorithm, key, iv);
-
-// // Encrypted using same algorithm, key and iv.
-// const encrypted =
-//   '924f0e378ff0f1741be29f341db8b4b6930e9a4d140730c5837fa255c600981d';
-// let decrypted = decipher.update(encrypted, 'hex', 'utf8');
-// decrypted += decipher.final('utf8');
-// console.log(decrypted);
-// // Prints: some clear text data
-
-
-
-
-
-
-
-
-// const {
-//     scrypt,
-//     randomFill,
-//     createCipheriv
-// } = require('crypto');
-
-// const algorithm = 'aes-192-cbc';
-// const password = 'Password used to generate key';
-
-// // First, we'll generate the key. The key length is dependent on the algorithm.
-// // In this case for aes192, it is 24 bytes (192 bits).
-// scrypt(password, 'salt', 24, (err, key) => {
-// if (err) throw err;
-// // Then, we'll generate a random initialization vector
-//     randomFill(new Uint8Array(16), (err, iv) => {
-//         if (err) throw err;
-
-//         // Once we have the key and iv, we can create and use the cipher...
-//         const cipher = createCipheriv(algorithm, key, iv);
-
-//         let encrypted = '';
-//         cipher.setEncoding('hex');
-
-//         cipher.on('data', (chunk) => encrypted += chunk);
-//         cipher.on('end', () => console.log(encrypted));
-
-//         cipher.write('some clear text data');
-//         cipher.end();
-//     });
-// });
-
-
-
-
-
-const {
-    scryptSync,
-    createDecipheriv
-  } = require('crypto');
-  
-  const algorithm = 'aes-192-cbc';
-  const password = 'Password used to generate key';
-  // Key length is dependent on the algorithm. In this case for aes192, it is
-  // 24 bytes (192 bits).
-  // Use the async `crypto.scrypt()` instead.
-  const key = scryptSync(password, 'salt', 24);
-  // The IV is usually passed along with the ciphertext.
-  const iv = Buffer.alloc(16, 0); // Initialization vector.
-  
-  const decipher = createDecipheriv(algorithm, key, iv);
-  
-  let decrypted = '';
-  decipher.on('readable', () => {
-    while (null !== (chunk = decipher.read())) {
-      decrypted += chunk.toString('utf8');
+const decryptFile = () => {
+  fs.readFile('./proofBase64Crypt.txt',  'utf8', (e, data) => {
+    if (e) {
+      throw new Error(e)
     }
-  });
-  decipher.on('end', () => {
-    console.log(decrypted);
-    // Prints: some clear text data
-  });
-  
-  // Encrypted with same algorithm, key and iv.
-  const encrypted =
-    'e5f79c5915c02171eec6b212d5520d44480993d7d622a7c4c2da32f6efda0ffa';
-  decipher.write(encrypted, 'hex');
-  decipher.end()
+    const algorithm = 'aes-192-cbc';
+    const password = 'Password used to generate key';
+    
+    const key = crypto.scryptSync(password, 'salt', 24)    
+    const iv = Buffer.alloc(16, 0);
+
+    const decipher = crypto.createDecipheriv(algorithm, key, iv)
+
+    const encrypted = data
+    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+    decrypted += decipher.final('utf8')
+    
+    const incialInfo64 = codedBase64ToString(decrypted)
+
+    fs.writeFile('proofDecryptedBase64.txt', incialInfo64, (e) => {
+      if (e) {
+        throw new Error(e)
+      }
+
+      console.log('proofDecryptedBase64.txt created')
+    })
+
+  })
 
 
+  fs.readFile('./proofHexCrypt.txt',  'utf8', (e, data) => {
+    if (e) {
+      throw new Error(e)
+    }
+    const algorithm = 'aes-192-cbc';
+    const password = 'Password used to generate key';
+    
+    const key = crypto.scryptSync(password, 'salt', 24)    
+    const iv = Buffer.alloc(16, 0);
 
+    const decipher = crypto.createDecipheriv(algorithm, key, iv)
 
+    const encrypted = data
+    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+    decrypted += decipher.final('utf8')
+    
+    const incialInfo64 = codedHexToString(decrypted)
+
+    fs.writeFile('proofDecryptedHex.txt', incialInfo64, (e) => {
+      if (e) {
+        throw new Error(e)
+      }
+
+      console.log('proofDecryptedHex.txt created')
+    })
+
+  })
+
+}
+
+decryptFile()
+
+const deleteAndVerifyRepeatedFiles = () => {
+
+  fs.readFile('./proofDecryptedBase64.txt', 'utf8', (e, dataBase64) => {
+    if (e) {
+      throw new Error(e)
+    }
+
+    fs.readFile('./proofDecryptedHex.txt', 'utf8', (e, dataHex) => {
+      if (e) {
+        throw new Error(e)        
+      }
+
+      if (dataBase64 == dataHex) {
+        fs.unlink('./proofDecryptedHex.txt', (e) => {
+          if (e) {
+            throw new Error(e)
+          }
+          console.log('The data is the same!')
+        })
+      } else {
+        throw new Error('The data is not the same')
+      }
+    })
+  })
+
+  fs.unlink('proofBase64Crypt.txt', (e) => {
+    if (e) {
+      throw new Error(e)
+    }
+  })
+
+  fs.unlink('proofHexCrypt.txt', (e) => {
+    if (e) {
+      throw new Error(e)
+    }
+  })
+
+  fs.rename('proofDecryptedHex.txt', 'proofDecryptedFromHexAndBase64', (e) => {
+    if (e) {
+      throw new Error(e)
+    }
+  })
+}
+
+deleteAndVerifyRepeatedFiles()
