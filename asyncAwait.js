@@ -60,18 +60,18 @@ const getSalary = (employeeFound) => {
     })
 }
 
-getEmployee(1).then((employee) => {
-    console.log(employee)    
-}).catch((e) => {
-    console.log(e)
-})
+// getEmployee(1).then((employee) => {
+//     console.log(employee)    
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 
-getSalary({ id: 1, name: 'Linux Torvals' }).then((result) => {
-    console.log(result)
-}).catch((e) => {
-    console.log(e)
-})
+// getSalary({ id: 1, name: 'Linux Torvals' }).then((result) => {
+//     console.log(result)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 
 // - Exercici 2
@@ -89,13 +89,13 @@ const findEmployeeAndSalary = async (id) => {
     }
 }
 
-findEmployeeAndSalary(1).then((employee) => {
-    console.log(employee.id)
-    console.log(employee.name)
-    console.log(employee.salary)
-}).catch((e) => {
-    console.log(e)
-})
+// findEmployeeAndSalary(1).then((employee) => {
+//     console.log(employee.id)
+//     console.log(employee.name)
+//     console.log(employee.salary)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 //----------------------------------------NIVELL 2----------------------------------------
 // - Exercici 1
@@ -121,40 +121,50 @@ const sums = async (num1, num2, num3, num4) => {
     return sum3
 }
 
-sums(1, 2, 3, 4).then((result) => {
-    console.log(result)
-}).catch((e) => {
-    console.log(e)
-})
+// sums(1, 2, 3, 4).then((result) => {
+//     console.log(result)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 
 //----------------------------------------NIVELL 3----------------------------------------
 // - Exercici 1
 // Captura tots els errors possibles dels nivells 1 i 2.
 
-getEmployee(20).then((employee) => {
-    console.log(employee)    
-}).catch((e) => {
-    console.log('Error:', e)
-})
+// getEmployee(20).then((employee) => {
+//     console.log(employee)    
+// }).catch((e) => {
+//     console.log('Error:', e)
+// })
 
 
-getSalary({ id: 21, name: 'Linux Torvals' }).then((result) => {
-    console.log(result)
-}).catch((e) => {
-    console.log('Error:', e)
-})
+// getSalary({ id: 21, name: 'Linux Torvals' }).then((result) => {
+//     console.log(result)
+// }).catch((e) => {
+//     console.log('Error:', e)
+// })
 
-findEmployeeAndSalary(22).then((employee) => {
-    console.log(employee.id)
-    console.log(employee.name)
-    console.log(employee.salary)
-}).catch((e) => {
-    console.log('Error:', e)
-})
+// findEmployeeAndSalary(22).then((employee) => {
+//     console.log(employee.id)
+//     console.log(employee.name)
+//     console.log(employee.salary)
+// }).catch((e) => {
+//     console.log('Error:', e)
+// })
 
-sums(1, 2, "Hola", 4).then((result) => {
-    console.log(result)
-}).catch((e) => {
-    console.log('Error', e)
-})
+// sums(1, 2, "Hola", 4).then((result) => {
+//     console.log(result)
+// }).catch((e) => {
+//     console.log('Error', e)
+// })
+
+
+module.exports = {
+    employees,
+    salaries,
+    getEmployee,
+    getSalary,
+    add,
+    sums
+}

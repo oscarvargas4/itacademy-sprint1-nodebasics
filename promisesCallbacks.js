@@ -15,17 +15,17 @@ const sumEqualOddNumber = (a, b)  => {
     })
 }
 
-sumEqualOddNumber(2, 2).then((sum) => {
-    console.log(sum)
-}).catch((e) => {
-    console.log(e)
-})
+// sumEqualOddNumber(2, 2).then((sum) => {
+//     console.log(sum)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
-sumEqualOddNumber(2, 3).then((sum) => {
-    console.log(sum)
-}).catch((e) => {
-    console.log(e)
-})
+// sumEqualOddNumber(2, 3).then((sum) => {
+//     console.log(sum)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 
 // - Exercici 2
@@ -40,9 +40,9 @@ const sumNumbers = (num1, callback) => {
     }, 2000)
 }
 
-sumNumbers(1, (sum) => {
-    console.log(sum)
-})
+// sumNumbers(1, (sum) => {
+//     console.log(sum)
+// })
 
 
 //----------------------------------------NIVELL 2----------------------------------------
@@ -89,17 +89,17 @@ const getEmpleado = (id) => {
     })
 }
 
-getEmpleado(1).then((result) => {
-    console.log(result)
-}).catch((e) => {
-    console.log(e)
-})
+// getEmpleado(1).then((result) => {
+//     console.log(result)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
-getEmpleado(10).then((result) => {
-    console.log(result)
-}).catch((e) => {
-    console.log(e)
-})
+// getEmpleado(10).then((result) => {
+//     console.log(result)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 
 // - Exercici 2
@@ -125,39 +125,43 @@ const getSalario = (id) => {
     })
 }
 
-getSalario(1).then((result) => {
-    console.log(result)
-}).catch((e) => {
-    console.log(e)
-})
+// getSalario(1).then((result) => {
+//     console.log(result)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
-getSalario(10).then((result) => {
-    console.log(result)
-}).catch((e) => {
-    console.log(e)
-})
+// getSalario(10).then((result) => {
+//     console.log(result)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 // - Exercici 3
 // Invoqui la primera Promise getEmpleado i posteriorment getSalario, niant l'execució de les dues promises.
-getEmpleado(1).then((empleado) => {
-    console.log(empleado)
-    return getSalario(1)
-}).then((salario) => {
-    console.log(salario)
-}).catch((e) => {
-    console.log(e)
-})
+// getEmpleado(1).then((empleado) => {
+//     console.log(empleado)
+//     return getSalario(1)
+// }).then((salario) => {
+//     console.log(salario)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 
 //----------------------------------------NIVELL 3----------------------------------------
 // - Exercici 1
 // Fixi un element catch a la invocació de la fase anterior que capturi 
 // qualsevol error i l'imprimeixi per consola.
-getEmpleado(1).then((empleado) => {
-    console.log(empleado)
-    return getSalario(10)
-}).then((salario) => {
-    console.log(salario)
-}).catch((e) => {
-    console.log(e)
-})
+// getEmpleado(1).then((empleado) => {
+//     console.log(empleado)
+//     return getSalario(10)
+// }).then((salario) => {
+//     console.log(salario)
+// }).catch((e) => {
+//     console.log(e)
+// })
+
+module.exports = {
+    getSalario
+}
