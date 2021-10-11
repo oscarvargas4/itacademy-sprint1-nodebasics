@@ -102,30 +102,62 @@ const findEmployeeAndSalary = async (id) => {
 // Crea una nova funció asíncrona que cridi a una altra que retorni una Promise que efectuï la seva 
 // funció resolve() després de 2 segons de la seva invocació.
 
-const add = (a, b) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (typeof a === 'number' && typeof b === 'number') {
-                resolve(a + b)
-            } else {
-                reject("The parameters must be numbers")
-            }            
-        }, 2000)
-    })
-}
+// Opció 1:
 
-const sums = async (num1, num2, num3, num4) => {
-    const sum1 = await add(num1, num2)
-    const sum2 = await add(num3, num4)
-    const sum3 = sum1 + sum2
-    return sum3
-}
+// const add = (a, b) => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (typeof a === 'number' && typeof b === 'number') {
+//                 resolve(a + b)
+//             } else {
+//                 reject("The parameters must be numbers")
+//             }            
+//         }, 2000)
+//     })
+// }
+
+// const sums = async (num1, num2, num3, num4) => {
+//     const sum1 = await add(num1, num2)
+//     const sum2 = await add(num3, num4)
+//     const sum3 = sum1 + sum2
+//     return sum3
+// }
 
 // sums(1, 2, 3, 4).then((result) => {
 //     console.log(result)
 // }).catch((e) => {
 //     console.log(e)
 // })
+
+// Opció 2:
+
+const sums = async (callback) => {
+    const result = await callback()
+    return result
+}
+
+const add = (a, b) => {
+    return new Promise((resolve, reject) => {
+        if (typeof a === 'number' && typeof b === 'number') {
+            setTimeout(() => {
+                resolve(a + b)
+            }, 2000)
+        } else {
+            reject("The parameters must be numbers")
+        }          
+    })
+    
+}
+
+
+// sums(() => {
+//     add(2, 4).then((result) => {
+//         console.log(result)
+//     }).catch((e) => {
+//         console.log(e)
+//     }) 
+// })
+
 
 
 //----------------------------------------NIVELL 3----------------------------------------
@@ -153,10 +185,14 @@ const sums = async (num1, num2, num3, num4) => {
 //     console.log('Error:', e)
 // })
 
-// sums(1, 2, "Hola", 4).then((result) => {
-//     console.log(result)
+// sums(() => {
+//     add(2, 'Hola').then((result) => {
+//         console.log(result)
+//     }).catch((e) => {
+//         console.log('Error:', e)
+//     })
 // }).catch((e) => {
-//     console.log('Error', e)
+//     console.log('Error:', e)
 // })
 
 
