@@ -17,7 +17,7 @@ const { getSalario } = require('../promisesCallbacks')
 
 const { Persona } = require('../classesArrowFunctions')
 
-https://jestjs.io/docs/timer-mocks
+// https://jestjs.io/docs/timer-mocks
 afterEach(() => {
     jest.useRealTimers()
 })
@@ -81,13 +81,13 @@ test('Should return 4000', async () => {
 
 // Crea els tests corresponents per verificar el funcionament de l'exercici Promises & Callbacks Nivell 2 - Exercici 3
 
-// Aquest test correspond a l'opció 1 del asyncAwait.js (comentat):
+// Opció 1 - Aquest test correspond a l'opció 1 del asyncAwait.js (comentat):
 // test('Should return 3', async () => {
 //     const response = await sums(1, 2)
 //     expect(response).toBe(3)
 // })
 
-// Opció 2 - No sé com solucionar el promise que hi ha a dins de la funció sums:
+// Opció 2:
 test('Should return 6', async () => {
     const response = await sums(() => {
         return 6
@@ -100,6 +100,8 @@ test('Testing add promise', async() => {
     const response = await add(2, 4)
     expect(response).toBe(6)
 })
+
+
 
 // Crea els tests corresponents per verificar el funcionament de l'exercici Promises & Callbacks Nivell 2 - Exercici 3
 
@@ -126,14 +128,3 @@ it('Mock Fake Timer with async function', () => {
 // Crea un mock que comprovi les crides al constructor de la classe Persona i al seu mètode decirNombre en
 // l'exercici Classes & Arrow Functions - Nivell 2 Exercici 2
 
-jest.mock('../classesArrowFunctions')
-
-it('We can check if the consumer called the class constructor', () => {
-    const persona = new Persona("Oscar");
-    expect(persona).toHaveBeenCalledTimes(1);
-  });
-
-//   it('We can check if the consumer called the class constructor', () => {
-//     const soundPlayerConsumer = new SoundPlayerConsumer();
-//     expect(SoundPlayer).toHaveBeenCalledTimes(1);
-//   });

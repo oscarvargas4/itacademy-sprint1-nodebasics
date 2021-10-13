@@ -116,12 +116,12 @@ const findEmployeeAndSalary = async (id) => {
 //     })
 // }
 
-// const sums = async (num1, num2, num3, num4) => {
+// const sums = async (num1, num2) => {
 //     const sum1 = await add(num1, num2)
 //     return sum1
 // }
 
-// sums(1, 2, 3, 4).then((result) => {
+// sums(1, 2).then((result) => {
 //     console.log(result)
 // }).catch((e) => {
 //     console.log(e)
