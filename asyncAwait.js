@@ -118,9 +118,7 @@ const findEmployeeAndSalary = async (id) => {
 
 // const sums = async (num1, num2, num3, num4) => {
 //     const sum1 = await add(num1, num2)
-//     const sum2 = await add(num3, num4)
-//     const sum3 = sum1 + sum2
-//     return sum3
+//     return sum1
 // }
 
 // sums(1, 2, 3, 4).then((result) => {

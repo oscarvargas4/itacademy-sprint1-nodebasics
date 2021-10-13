@@ -1,30 +1,35 @@
-const { Buffer } = require('buffer')
 
-const codedToHex = (info) => {
-    const buf = Buffer.from(info, 'utf8')
-    return buf.toString('hex')
+const sums = async (callback) => {
+    const result = await callback()
+    return result
 }
 
-// console.log(codedToHex('Hola'))
-
-const codedHexToString = (info) => {
-    const buf = Buffer.from(info, 'hex')
-    return buf.toString('utf8')
+const add = (a, b) => {
+    return new Promise((resolve, reject) => {
+        if (typeof a === 'number' && typeof b === 'number') {
+            setTimeout(() => {
+                resolve(a + b)
+            }, 2000)
+        } else {
+            reject("The parameters must be numbers")
+        }          
+    })
+    
 }
 
-// console.log(codedHexToString('486f6c61'))
+sums(() => {
+    add(2, 4).then((result) => {
+        console.log(result)
+    }).catch((e) => {
+        console.log(e)
+    })
+})
 
 
-const codedToBase64 = (info) => {
-    const buf = Buffer.from(info, 'utf8')
-    return buf.toString('base64')
-}
-
-console.log(codedToBase64('Hola'))
-
-const codedBase64ToString = (info) => {
-    const buf = Buffer.from(info, 'base64')
-    return buf.toString('utf8')
-}
-
-console.log(codedBase64ToString('SG9sYQ=='))
+// sums(() => {
+//     add(2, 4).then((result) => {
+//         console.log(result)
+//     }).catch((e) => {
+//         console.log(e)
+//     }) 
+// })

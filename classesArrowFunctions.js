@@ -74,3 +74,5 @@ const coches = new CochesDeOscar()
 
 coches.createCarsObject("ferrari", "lamborghini", "bugatti")
 coches.createCarsObject("bmw", "audi", "mercedes")
+
+module.exports = Persona
