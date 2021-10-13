@@ -88,19 +88,22 @@ test('Should return 4000', async () => {
 // })
 
 // Opció 2:
-test('Should return 6', async () => {
+test('Confirms the sums function and the callback', async () => {
     const response = await sums(() => {
         return 6
     })
 
     expect(response).toBe(6)
+
+    const response2 = await add(2, 4, () => 'Callback for tetsing')
+    expect(response2).toBe(6)
 })
 
-test('Testing add promise', async() => {
-    const response = await add(2, 4)
-    expect(response).toBe(6)
+test('Test for add Promise', () => {
+    return add(1, 2, () => 'Callback for tetsing').then(data => {
+        expect(data).toBe(3)
+    })
 })
-
 
 
 // Crea els tests corresponents per verificar el funcionament de l'exercici Promises & Callbacks Nivell 2 - Exercici 3
@@ -112,15 +115,23 @@ test('Should return 4000', async () => {
 
 
 // Verifica mitjançant tests l'execució de l'exercici Async / Await Nivell 2 Exercici 1 utilitzant Jest Fake Timers.
-// https://jestjs.io/docs/timer-mocks
 
-it('Mock Fake Timer with async function', () => {    
+test('Fake Timers', () => {
+    const callback = jest.fn()
+
+    sums(callback)
+
+    expect(callback).toHaveBeenCalled()
+
+    const cb = () => {
+        jest.runAllTimers()
+    }    
+
     jest.useFakeTimers()
 
-    const response = add(2, 4)
-
-    jest.advanceTimersByTime(2000)
-    expect(response).not.toBeNull()
+    return add(1, 2, cb).then(data => {
+        expect(data).toBe(3)
+    })
 })
 
 

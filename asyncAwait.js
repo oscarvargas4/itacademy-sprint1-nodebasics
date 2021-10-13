@@ -129,27 +129,25 @@ const findEmployeeAndSalary = async (id) => {
 
 // Opció 2:
 
+
 const sums = async (callback) => {
     const result = await callback()
     return result
 }
 
-const add = (a, b) => {
-    return new Promise((resolve, reject) => {
-        if (typeof a === 'number' && typeof b === 'number') {
-            setTimeout(() => {
-                resolve(a + b)
-            }, 2000)
-        } else {
-            reject("The parameters must be numbers")
-        }          
+const add = (a, b, cb) => {
+    return new Promise((resolve, reject) => {        
+        setTimeout(() => {
+            resolve(a + b)
+        }, 2000)
+        cb()
     })
-    
 }
 
 
 // sums(() => {
-//     add(2, 4).then((result) => {
+//     add(2, 4, () => {
+//     console.log('Callback for testing in Jest')}).then((result) => {
 //         console.log(result)
 //     }).catch((e) => {
 //         console.log(e)
