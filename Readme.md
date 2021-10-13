@@ -5,5 +5,5 @@ project.
 
 The code is in [title](https://github.com/oscarvargas4/itacamy-sprint1-nodebasics)
 
-## CHEAT SHEAT FOR MARKDOWN
+## CHEAT SHEET FOR MARKDOWN
 [title](https://www.markdownguide.org/cheat-sheet/)
