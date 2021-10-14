@@ -176,7 +176,7 @@ test('Abstract Function', () => {
     const cars = new TestCars()
     
     expect(cars).toBeInstanceOf(TestCars)
-    
+
     //https://codewithhugo.com/jest-array-object-match-contain/
     const objMethod = cars.createObject("1", "2", "3")
     expect(objMethod).toEqual(expect.objectContaining({
@@ -186,3 +186,8 @@ test('Abstract Function', () => {
     }))
 
 })
+
+// Refès l'exercici Async / Await Nivell 1 accedint a un fitxer extern JSON.
+// Crea tests que demostrin la correcta execució de l'exercici fent un mock del fitxer JSON.
+// https://heynode.com/tutorial/readwrite-json-files-nodejs/
+
