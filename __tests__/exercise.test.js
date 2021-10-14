@@ -15,7 +15,9 @@ const {
 
 const { getSalario } = require('../promisesCallbacks')
 
-const { Persona, ClassNonCallable } = require('../classesArrowFunctions')
+const { Persona } = require('../classesArrowFunctions')
+
+const { ClassNonCallable } = require('../classesArrowFunctions')
 
 
 
@@ -161,7 +163,7 @@ test('Abstract Function', () => {
     
     // expect(coches.createCarsObject('coche1', 'coche2', 'coche3')).toBe({ carOne: 'coche1', carTwo: 'coche2', carThree: 'coche3' })
 
-    const prueba = new ClassNonCallable()
-    expect(prueba.createCarsObject('honda', 'renault', 'toyota')).toThrowError()
+    // const prueba = new ClassNonCallable()
+    // expect(prueba.createCarsObject('honda', 'renault', 'toyota')).toThrowError()
 
 })

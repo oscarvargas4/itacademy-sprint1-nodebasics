@@ -72,8 +72,8 @@ class CochesDeOscar extends ClassNonCallable {
 
 
 
-const prueba = new ClassNonCallable()
-prueba.createCarsObject('honda', 'renault', 'toyota')
+// const prueba = new ClassNonCallable()
+// prueba.createCarsObject('honda', 'renault', 'toyota')
 
 // const coches = new CochesDeOscar()
 // coches.createCarsObject("ferrari", "lamborghini", "bugatti")
