@@ -55,6 +55,13 @@ class ClassNonCallable {
             throw new Error('Abstract class cannot be Instantied')
         }
     }
+    
+}
+
+class CochesDeOscar extends ClassNonCallable {    
+    constructor() {
+        super()
+    }
 
     createCarsObject(carOne, carTwo, carThree) {
         const cars = {
@@ -67,10 +74,6 @@ class ClassNonCallable {
     }
 }
 
-class CochesDeOscar extends ClassNonCallable {    
-}
-
-
 
 // const prueba = new ClassNonCallable()
 // prueba.createCarsObject('honda', 'renault', 'toyota')
@@ -80,6 +83,5 @@ class CochesDeOscar extends ClassNonCallable {
 // coches.createCarsObject("bmw", "audi", "mercedes")
 
 module.exports = {
-    Persona,
-    ClassNonCallable
+    Persona
 }

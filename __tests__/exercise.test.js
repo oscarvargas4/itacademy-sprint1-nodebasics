@@ -17,8 +17,6 @@ const { getSalario } = require('../promisesCallbacks')
 
 const { Persona } = require('../classesArrowFunctions')
 
-const { ClassNonCallable } = require('../classesArrowFunctions')
-
 
 
 // https://jestjs.io/docs/timer-mocks
@@ -147,23 +145,44 @@ test('Fake Timers', () => {
 jest.mock('../classesArrowFunctions')
 
 test('Constructor and method calling', () => {
-    const somebody = new Persona("Proof")
-    expect(somebody.nom).toBe("Proof")
-    expect(somebody.decirNombre()).toBe("Test")
+    const someone = new Persona("Proof")
+    expect(someone).toBeInstanceOf(Persona) // Testing that someone is an instance of "Person" class
+    expect(someone.nom).toBe("Proof")
+    expect(someone.decirNombre()).toBe("Test")
 
 })
 
 // Verifica mitjançant tests l'exercici Classes & Arrow Functions Nivell 3 - Exercici 1.
 
 test('Abstract Function', () => {
-    // class CochesDeTest extends ClassNonCallable {
-    // }
-        
-    // const coches = new CochesDeTest()
+    const ClassNonCallable = jest.fn()
     
-    // expect(coches.createCarsObject('coche1', 'coche2', 'coche3')).toBe({ carOne: 'coche1', carTwo: 'coche2', carThree: 'coche3' })
+    class TestCars extends ClassNonCallable {    
+        constructor() {
+            super()
+        }
 
-    // const prueba = new ClassNonCallable()
-    // expect(prueba.createCarsObject('honda', 'renault', 'toyota')).toThrowError()
+        createObject(one, two, three) {
+            const obj = {
+                one,
+                two,
+                three
+             }
+
+            return obj
+        }
+    }
+
+    const cars = new TestCars()
+    
+    expect(cars).toBeInstanceOf(TestCars)
+    
+    //https://codewithhugo.com/jest-array-object-match-contain/
+    const objMethod = cars.createObject("1", "2", "3")
+    expect(objMethod).toEqual(expect.objectContaining({
+        one: "1",
+        two: "2",
+        three: "3"
+    }))
 
 })
