@@ -15,7 +15,9 @@ const {
 
 const { getSalario } = require('../promisesCallbacks')
 
-const { Persona } = require('../classesArrowFunctions')
+const { Persona, ClassNonCallable } = require('../classesArrowFunctions')
+
+
 
 // https://jestjs.io/docs/timer-mocks
 afterEach(() => {
@@ -138,4 +140,28 @@ test('Fake Timers', () => {
 //----------------------------------------NIVELL 2----------------------------------------
 // Crea un mock que comprovi les crides al constructor de la classe Persona i al seu mètode decirNombre en
 // l'exercici Classes & Arrow Functions - Nivell 2 Exercici 2
+// https://www.youtube.com/watch?v=9EV9gtnt-go
 
+jest.mock('../classesArrowFunctions')
+
+test('Constructor and method calling', () => {
+    const somebody = new Persona("Proof")
+    expect(somebody.nom).toBe("Proof")
+    expect(somebody.decirNombre()).toBe("Test")
+
+})
+
+// Verifica mitjançant tests l'exercici Classes & Arrow Functions Nivell 3 - Exercici 1.
+
+test('Abstract Function', () => {
+    // class CochesDeTest extends ClassNonCallable {
+    // }
+        
+    // const coches = new CochesDeTest()
+    
+    // expect(coches.createCarsObject('coche1', 'coche2', 'coche3')).toBe({ carOne: 'coche1', carTwo: 'coche2', carThree: 'coche3' })
+
+    const prueba = new ClassNonCallable()
+    expect(prueba.createCarsObject('honda', 'renault', 'toyota')).toThrowError()
+
+})

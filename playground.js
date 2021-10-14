@@ -1,35 +1,13 @@
+const { Persona, ClassNonCallable } = require('./classesArrowFunctions')
 
-const sums = async (callback) => {
-    const result = await callback()
-    return result
+const Juliana = new Persona('Juliana')
+Juliana.decirNombre()
+
+
+class CochesEjemplo extends ClassNonCallable{
+
 }
 
-const add = (a, b) => {
-    return new Promise((resolve, reject) => {
-        if (typeof a === 'number' && typeof b === 'number') {
-            setTimeout(() => {
-                resolve(a + b)
-            }, 2000)
-        } else {
-            reject("The parameters must be numbers")
-        }          
-    })
-    
-}
+const coches = new CochesEjemplo()
 
-sums(() => {
-    add(2, 4).then((result) => {
-        console.log(result)
-    }).catch((e) => {
-        console.log(e)
-    })
-})
-
-
-// sums(() => {
-//     add(2, 4).then((result) => {
-//         console.log(result)
-//     }).catch((e) => {
-//         console.log(e)
-//     }) 
-// })
+coches.createCarsObject('coche1', 'coche2', 'coche3')

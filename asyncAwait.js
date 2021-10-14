@@ -181,15 +181,7 @@ const add = (a, b, cb) => {
 //     console.log('Error:', e)
 // })
 
-// sums(() => {
-//     add(2, 'Hola').then((result) => {
-//         console.log(result)
-//     }).catch((e) => {
-//         console.log('Error:', e)
-//     })
-// }).catch((e) => {
-//     console.log('Error:', e)
-// })
+
 
 
 module.exports = {

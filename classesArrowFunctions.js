@@ -2,11 +2,11 @@
 // - Exercici 1
 // Imprimir per pantalla el resultat d'una arrow function autoinvocable que sumi dos nombres.
 
-(()=> {
-    const a = 10
-    const b = 25
-    console.log(a + b)
-})()
+// (()=> {
+//     const a = 10
+//     const b = 25
+//     console.log(a + b)
+// })()
 
 //----------------------------------------NIVELL 2----------------------------------------
 // - Exercici 1
@@ -21,7 +21,7 @@ const arrowProof = (proof) => {
     return obj
 }
 
-console.log(arrowProof("Hola"))
+// console.log(arrowProof("Hola"))
 
 
 // - Exercici 2
@@ -40,10 +40,10 @@ class Persona {
 
 const persona =  new Persona("Oscar")
 
-persona.decirNombre("Oscar")
+// persona.decirNombre()
 
 
-//----------------------------------------NIVELL 2----------------------------------------
+//----------------------------------------NIVELL 3----------------------------------------
 // - Exercici 1
 // Crear una function creadora d'objectes, abstraient la definició de les classes. 
 // Invocar-amb diferents definicions.
@@ -70,9 +70,16 @@ class ClassNonCallable {
 class CochesDeOscar extends ClassNonCallable {    
 }
 
-const coches = new CochesDeOscar()
 
-coches.createCarsObject("ferrari", "lamborghini", "bugatti")
-coches.createCarsObject("bmw", "audi", "mercedes")
 
-module.exports = Persona
+const prueba = new ClassNonCallable()
+prueba.createCarsObject('honda', 'renault', 'toyota')
+
+// const coches = new CochesDeOscar()
+// coches.createCarsObject("ferrari", "lamborghini", "bugatti")
+// coches.createCarsObject("bmw", "audi", "mercedes")
+
+module.exports = {
+    Persona,
+    ClassNonCallable
+}
