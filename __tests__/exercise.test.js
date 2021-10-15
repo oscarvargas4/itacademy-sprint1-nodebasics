@@ -5,17 +5,15 @@ const {
     multiply,
     divide
 } = require('../app/codeForTest')
-
 const {
     getEmployee,
     getSalary,
     add,
     sums
 } = require('../asyncAwait')
-
 const { getSalario } = require('../promisesCallbacks')
-
 const { Persona } = require('../classesArrowFunctions')
+const { getEmployeeJSONFile, getSalaryJSONFile } = require('../asyncAwaitNivell1ForTest')
 
 
 
@@ -191,3 +189,18 @@ test('Abstract Function', () => {
 // Crea tests que demostrin la correcta execució de l'exercici fent un mock del fitxer JSON.
 // https://heynode.com/tutorial/readwrite-json-files-nodejs/
 
+// Exercisi refet en "asyncAwaitNivell1ForTest.js"
+
+jest.mock('../readJSON')
+
+test('Mocking JSON file', async () => {
+    const response = await getEmployeeJSONFile(1)
+    expect(response.name).toBe("Oscar Vargas")
+
+    const secondResponse = await getSalaryJSONFile({
+        "id": 1,
+        "name": "Oscar Vargas"
+    })
+    expect(secondResponse).toBe(10000)
+
+})
