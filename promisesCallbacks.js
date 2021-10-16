@@ -78,12 +78,7 @@ const getEmpleado = (id) => {
         if (!employeeSearch) {
             reject("Employee not found")
         }
-
-        // const employeeFound = {
-        //     id: employeeSearch.id,
-        //     name: employeeSearch.name
-        // }
-
+        
         resolve(employeeSearch)
 
     })
@@ -112,13 +107,6 @@ const getSalario = (id) => {
         if (!salarySearch) {
             reject("Salary not found")
         }
-
-        
-        
-        // const salaryFound = {
-        //     id: salarySearch.id,
-        //     salary: salarySearch.salary
-        // }
 
         resolve(salarySearch)
 
