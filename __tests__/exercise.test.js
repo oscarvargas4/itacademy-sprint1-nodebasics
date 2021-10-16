@@ -11,7 +11,7 @@ const {
     add,
     sums
 } = require('../asyncAwait')
-const { getSalario } = require('../promisesCallbacks')
+const { getEmpleado, getSalario } = require('../promisesCallbacks')
 const { Persona } = require('../classesArrowFunctions')
 const { getEmployeeJSONFile, getSalaryJSONFile } = require('../asyncAwaitNivell1ForTest')
 
@@ -70,14 +70,13 @@ test('Should pass: 2 / 4 = 0.5', async () => {
 test('Should return Linux Torvalds', async () => {
     const response = await getEmployee(1)
     expect(response.name).toBe('Linux Torvalds')
+
+    const responseTwo = await getSalary({ id: 1, name: 'Linux Torvals' })
+    expect(responseTwo).toBe(4000)
+
 })
 
 // Crea els tests corresponents per verificar el funcionament de l'exercici Async / Await Nivell 2 - Exercici 1
-
-test('Should return 4000', async () => {
-    const response = await getSalary({ id: 1, name: 'Linux Torvals' })
-    expect(response.salary).toBe(4000)
-})
 
 test('Confirms the sums function and the callback', async () => {
     const response = await sums(() => {
@@ -100,7 +99,8 @@ test('Test for add Promise', () => {
 // Crea els tests corresponents per verificar el funcionament de l'exercici Promises & Callbacks Nivell 2 - Exercici 3
 
 test('Should return 4000', async () => {
-    const response = await getSalario(1)
+    const empleado = await getEmpleado(1)
+    const response = await getSalario(empleado.id)
     expect(response.salary).toBe(4000)
 })
 

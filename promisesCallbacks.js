@@ -127,14 +127,14 @@ const getSalario = (id) => {
 
 // - Exercici 3
 // Invoqui la primera Promise getEmpleado i posteriorment getSalario, niant l'execució de les dues promises.
-getEmpleado(1).then((empleado) => {
-    console.log(empleado)
-    return getSalario(1)
-}).then((salario) => {
-    console.log(salario)
-}).catch((e) => {
-    console.log(e)
-})
+// getEmpleado(1).then((empleado) => {
+//     console.log(empleado)
+//     return getSalario(1)
+// }).then((salario) => {
+//     console.log(salario)
+// }).catch((e) => {
+//     console.log(e)
+// })
 
 
 //----------------------------------------NIVELL 3----------------------------------------
@@ -151,5 +151,6 @@ getEmpleado(1).then((empleado) => {
 // })
 
 module.exports = {
+    getEmpleado,
     getSalario
 }

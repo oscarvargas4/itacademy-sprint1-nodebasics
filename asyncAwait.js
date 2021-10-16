@@ -33,12 +33,7 @@ const getEmployee = (id) => {
             reject("Employee not found")
         }
 
-        const employeeFound = {
-            id: employeeSearch.id,
-            name: employeeSearch.name
-        }
-
-        resolve(employeeFound)
+        resolve(employeeSearch)
 
     })
 }
@@ -50,12 +45,7 @@ const getSalary = (employeeFound) => {
             reject("Salary not found")
         }
 
-        const salaryFound = {
-            id: salarySearch.id,
-            salary: salarySearch.salary
-        }
-
-        resolve(salaryFound)
+        resolve(salarySearch.salary)
 
     })
 }
@@ -82,18 +72,10 @@ const findEmployeeAndSalary = async (id) => {
     const employee = await getEmployee(id)
     const salary = await getSalary(employee)
 
-    return {
-        id: employee.id,
-        name: employee.name,
-        salary: salary.salary
-    }
+    console.log(` id: ${employee.id} \n name: ${employee.name} \n salary: ${salary}`)
 }
 
-// findEmployeeAndSalary(1).then((employee) => {
-//     console.log(employee.id)
-//     console.log(employee.name)
-//     console.log(employee.salary)
-// }).catch((e) => {
+// findEmployeeAndSalary(1).then().catch((e) => {
 //     console.log(e)
 // })
 
