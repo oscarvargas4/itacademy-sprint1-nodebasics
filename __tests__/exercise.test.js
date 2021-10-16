@@ -79,15 +79,6 @@ test('Should return 4000', async () => {
     expect(response.salary).toBe(4000)
 })
 
-// Crea els tests corresponents per verificar el funcionament de l'exercici Promises & Callbacks Nivell 2 - Exercici 3
-
-// Opció 1 - Aquest test correspond a l'opció 1 del asyncAwait.js (comentat):
-// test('Should return 3', async () => {
-//     const response = await sums(1, 2)
-//     expect(response).toBe(3)
-// })
-
-// Opció 2:
 test('Confirms the sums function and the callback', async () => {
     const response = await sums(() => {
         return 6

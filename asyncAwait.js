@@ -102,32 +102,6 @@ const findEmployeeAndSalary = async (id) => {
 // Crea una nova funció asíncrona que cridi a una altra que retorni una Promise que efectuï la seva 
 // funció resolve() després de 2 segons de la seva invocació.
 
-// Opció 1:
-
-// const add = (a, b) => {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             if (typeof a === 'number' && typeof b === 'number') {
-//                 resolve(a + b)
-//             } else {
-//                 reject("The parameters must be numbers")
-//             }            
-//         }, 2000)
-//     })
-// }
-
-// const sums = async (num1, num2) => {
-//     const sum1 = await add(num1, num2)
-//     return sum1
-// }
-
-// sums(1, 2).then((result) => {
-//     console.log(result)
-// }).catch((e) => {
-//     console.log(e)
-// })
-
-// Opció 2:
 
 
 const sums = async (callback) => {

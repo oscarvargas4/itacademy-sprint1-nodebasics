@@ -79,12 +79,12 @@ const getEmpleado = (id) => {
             reject("Employee not found")
         }
 
-        const employeeFound = {
-            id: employeeSearch.id,
-            name: employeeSearch.name
-        }
+        // const employeeFound = {
+        //     id: employeeSearch.id,
+        //     name: employeeSearch.name
+        // }
 
-        resolve(employeeFound)
+        resolve(employeeSearch)
 
     })
 }
@@ -115,12 +115,12 @@ const getSalario = (id) => {
 
         
         
-        const salaryFound = {
-            id: salarySearch.id,
-            salary: salarySearch.salary
-        }
+        // const salaryFound = {
+        //     id: salarySearch.id,
+        //     salary: salarySearch.salary
+        // }
 
-        resolve(salaryFound)
+        resolve(salarySearch)
 
     })
 }
@@ -139,14 +139,14 @@ const getSalario = (id) => {
 
 // - Exercici 3
 // Invoqui la primera Promise getEmpleado i posteriorment getSalario, niant l'execució de les dues promises.
-// getEmpleado(1).then((empleado) => {
-//     console.log(empleado)
-//     return getSalario(1)
-// }).then((salario) => {
-//     console.log(salario)
-// }).catch((e) => {
-//     console.log(e)
-// })
+getEmpleado(1).then((empleado) => {
+    console.log(empleado)
+    return getSalario(1)
+}).then((salario) => {
+    console.log(salario)
+}).catch((e) => {
+    console.log(e)
+})
 
 
 //----------------------------------------NIVELL 3----------------------------------------
