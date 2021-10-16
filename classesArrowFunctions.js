@@ -2,11 +2,13 @@
 // - Exercici 1
 // Imprimir per pantalla el resultat d'una arrow function autoinvocable que sumi dos nombres.
 
-// (()=> {
-//     const a = 10
-//     const b = 25
-//     console.log(a + b)
-// })()
+const result = (()=> {
+    const a = 10
+    const b = 25
+    return(a + b)
+})()
+
+// console.log(result)
 
 //----------------------------------------NIVELL 2----------------------------------------
 // - Exercici 1
@@ -47,7 +49,8 @@ const persona =  new Persona("Oscar")
 // - Exercici 1
 // Crear una function creadora d'objectes, abstraient la definició de les classes. 
 // Invocar-amb diferents definicions.
-//Abstract class
+// Abstract class
+// https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
 
 class ClassNonCallable {
     constructor() {
@@ -62,21 +65,19 @@ class CochesDeOscar extends ClassNonCallable {
     constructor() {
         super()
     }
-
-    createCarsObject(carOne, carTwo, carThree) {
-        const cars = {
-            carOne,
-            carTwo,
-            carThree
-        }
-
-        console.log(cars)
-    }
 }
 
+CochesDeOscar.prototype.createCarsObject = (carOne, carTwo, carThree) => {
+    const cars = {
+        carOne,
+        carTwo,
+        carThree
+    }
+
+    console.log(cars)
+}
 
 // const prueba = new ClassNonCallable()
-// prueba.createCarsObject('honda', 'renault', 'toyota')
 
 // const coches = new CochesDeOscar()
 // coches.createCarsObject("ferrari", "lamborghini", "bugatti")

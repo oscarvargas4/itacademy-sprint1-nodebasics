@@ -159,28 +159,28 @@ test('Abstract Function', () => {
         constructor() {
             super()
         }
-
-        createObject(one, two, three) {
-            const obj = {
-                one,
-                two,
-                three
-             }
-
-            return obj
-        }
     }
 
     const cars = new TestCars()
     
     expect(cars).toBeInstanceOf(TestCars)
 
+    TestCars.prototype.createObject = (carOne, carTwo, carThree) => {
+        const obj = {
+            carOne,
+            carTwo,
+            carThree
+        }
+
+        return obj
+    }
+
     //https://codewithhugo.com/jest-array-object-match-contain/
     const objMethod = cars.createObject("1", "2", "3")
     expect(objMethod).toEqual(expect.objectContaining({
-        one: "1",
-        two: "2",
-        three: "3"
+        carOne: "1",
+        carTwo: "2",
+        carThree: "3"
     }))
 
 })
