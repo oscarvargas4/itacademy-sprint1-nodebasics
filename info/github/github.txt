@@ -1,0 +1,12 @@
+Aprèn a usar un sistema de control de versions per tenir sempre un registre de com avança el teu codi i poder lliurar els exercicis: https://guides.github.com/activities/hello-world 
+Algunes funcionalitats més de Github: https://www.freecodecamp.org/espanol/news/como-hacer-tu-primer-pull-request-en-github 
+Exercici introductori: accedeix a aquest repositori i segueix les instruccions per fer les teves primeres passes amb Github
+
+1) Github guides:
+    https://guides.github.com/activities/hello-world 
+
+2) Github functionalities:
+    https://www.freecodecamp.org/espanol/news/como-hacer-tu-primer-pull-request-en-github/
+
+3) Github exercise: 
+    https://github.com/IT-Academy-BCN/node_git_initials
